@@ -53,52 +53,41 @@
 @section('content')
 <main class="bg" style="padding: 20px; min-height: 100vh;">
     <div style="overflow-x: auto;">
-        @if($movies->isEmpty())
-            <h3 class="text-white">Phim bạn tìm không tồn tại.</h3>
+        @if($countries->isEmpty())
+            <h3 class="text-white">Quốc gia bạn tìm không tồn tại.</h3>
         @else
-            <h3 class="text-white">Danh sách Phim</h3>
+            <h3 class="text-white">Danh sách Quốc gia</h3>
             <table class="table table-bordered table-striped table-light text-dark">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tên phim</th>
-                        <th>Mô tả</th>
-                        <th>Thể loại</th>
                         <th>Quốc gia</th>
-                        <th>Mác</th>
+                        <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($movies as $movie)
+                    @foreach ($countries as $country)
                         <tr>
-                            <td>{{ $movie->id }}</td>
+                            <td>{{ $country->id }}</td>
+                            <td> {{ $country->name }}</td>
                             <td>
-                                @if($movie->images)
-                                    <img src="{{ asset($movie->images) }}" alt="Avatar"
-                                        style="max-width: 100px; max-height: 100px;">
-                                @else
-                                    <p>No image found.</p>
-                                @endif
-                                {{ $movie->movie_name }}
-                            </td>
-                            <td>{{ $movie->describe }}</td>
-                            <td>{{ $movie->category }}</td>
-                            <td>
-                                {{ $movie->countries->name }}
-                            </td>
-
-                            <td>
-                                @if($movie->age_limit)
-                                    18+
-                                @else
-                                    18-
-                                @endif
+                                <a href="{{ route('admin.editCountries', $country->id) }}" class="btn btn-info btn-sm"><i
+                                        class="fa-regular fa-pen-to-square" style="font-size: 20px; color: black;"></i></a>
+                                <form action="{{ route('admin.deleteCountries', $country->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Bạn có muốn xoá quốc gia này?')">
+                                        <i class="fa-solid fa-trash" style="font-size: 20px;"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $movies->appends(request()->all())->links('custom-pagination') }}
+            {{ $countries->appends(request()->all())->links('custom-pagination') }}
         @endif
     </div>
 </main>
