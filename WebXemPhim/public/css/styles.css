@@ -1,0 +1,36 @@
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #111111;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #111111;
+}
+.bg {
+    background-color: #111111;
+}
+
+.Top10ShowInVN {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #111111; 
+    border-radius: 4px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #222222 ; 
+}
+
+.card {
+    transition: transform 0.3s; /* Thêm hiệu ứng chuyển động */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Kích thước của thẻ div sẽ tăng khi hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+}
