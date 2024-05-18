@@ -152,7 +152,7 @@ class CustomMovieController extends Controller
         } else if ($idUser === $user->id) {
             return back()->withSuccess('Không thể xóa Admin');
         }
-        $user->posts()->delete();
+        $user->delete();
         return back()->withSuccess('Xóa User thành công');
     }
     //Lay danh sach user o trang admin
